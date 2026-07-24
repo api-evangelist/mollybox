@@ -1,0 +1,38 @@
+openapi: 3.1.0
+info:
+  title: Arcflow Admin Me API
+  version: 0.1.0
+tags:
+- name: Me
+paths:
+  /api/me:
+    get:
+      summary: Get Identity
+      description: Return the authenticated server identity.
+      operationId: get_identity_api_me_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerIdentity'
+      security:
+      - HTTPBearer: []
+      tags:
+      - Me
+components:
+  schemas:
+    ServerIdentity:
+      properties:
+        mode:
+          type: string
+          title: Mode
+          default: single-user
+      type: object
+      title: ServerIdentity
+      description: Authenticated identity payload for a single-user server.
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

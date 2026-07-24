@@ -1,0 +1,320 @@
+openapi: 3.1.0
+info:
+  title: Arcflow Admin Resources API
+  version: 0.1.0
+tags:
+- name: Resources
+paths:
+  /api/resources:
+    post:
+      summary: Capture Resource
+      description: Capture a new URL resource.
+      operationId: capture_resource_api_resources_post
+      security:
+      - HTTPBearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CaptureRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Resources
+    get:
+      summary: List Resources
+      description: List resources with optional keyword, status, and source filters.
+      operationId: list_resources_api_resources_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Q
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/ResourceStatus'
+          - type: 'null'
+          title: Status
+      - name: source_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/SourceType'
+          - type: 'null'
+          title: Source Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Resource'
+                title: Response List Resources Api Resources Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Resources
+  /api/resources/{resource_id}:
+    get:
+      summary: Get Resource
+      description: Get a single resource by ID.
+      operationId: get_resource_api_resources__resource_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: resource_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Resource Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Resources
+  /api/resources/{resource_id}/status:
+    patch:
+      summary: Update Resource Status
+      description: Update a resource's status.
+      operationId: update_resource_status_api_resources__resource_id__status_patch
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: resource_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Resource Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatusUpdateRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Resources
+  /api/resources/{resource_id}/open:
+    post:
+      summary: Open Resource
+      description: Open a resource's URL in the default browser and record the open time.
+      operationId: open_resource_api_resources__resource_id__open_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: resource_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Resource Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Resources
+components:
+  schemas:
+    Resource:
+      properties:
+        id:
+          type: string
+          title: Id
+        url:
+          type: string
+          title: Url
+        canonical_url:
+          type: string
+          title: Canonical Url
+        source_type:
+          $ref: '#/components/schemas/SourceType'
+          default: web
+        status:
+          $ref: '#/components/schemas/ResourceStatus'
+          default: inbox
+        title:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Title
+        domain:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Domain
+        capture_count:
+          type: integer
+          title: Capture Count
+          default: 1
+        metadata_status:
+          $ref: '#/components/schemas/MetadataStatus'
+          default: pending
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        updated_at:
+          type: string
+          format: date-time
+          title: Updated At
+        last_opened_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Last Opened At
+      type: object
+      required:
+      - url
+      - canonical_url
+      title: Resource
+      description: Core domain object representing a captured URL resource.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    CaptureRequest:
+      properties:
+        url:
+          type: string
+          title: Url
+      type: object
+      required:
+      - url
+      title: CaptureRequest
+      description: API request body for capturing a new resource.
+    StatusUpdateRequest:
+      properties:
+        status:
+          $ref: '#/components/schemas/ResourceStatus'
+      type: object
+      required:
+      - status
+      title: StatusUpdateRequest
+      description: API request body for updating resource status.
+    MetadataStatus:
+      type: string
+      enum:
+      - pending
+      - fetched
+      - failed
+      title: MetadataStatus
+      description: Metadata enrichment lifecycle for a resource.
+    SourceType:
+      type: string
+      enum:
+      - github
+      - x
+      - wechat
+      - web
+      title: SourceType
+      description: Origin platform of a resource URL.
+    ResourceStatus:
+      type: string
+      enum:
+      - inbox
+      - next
+      - doing
+      - done
+      - archived
+      title: ResourceStatus
+      description: Learning status of a resource.
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

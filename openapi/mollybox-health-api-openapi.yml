@@ -1,0 +1,40 @@
+openapi: 3.1.0
+info:
+  title: Arcflow Admin Health API
+  version: 0.1.0
+tags:
+- name: Health
+paths:
+  /api/health:
+    get:
+      summary: Health
+      description: Return a public liveness response.
+      operationId: health_api_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+      tags:
+      - Health
+components:
+  schemas:
+    HealthResponse:
+      properties:
+        status:
+          type: string
+          title: Status
+          default: ok
+        mode:
+          type: string
+          title: Mode
+          default: single-user
+      type: object
+      title: HealthResponse
+      description: Public health-check response for a self-hosted server.
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

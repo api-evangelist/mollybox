@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: probed
+host: http://www.mollybox.cn
+note: >-
+  HTTPS/443 refuses connection; probed over HTTP. All standard discovery
+  documents return the FastAPI default 404 ({"detail":"Not Found"}). No
+  well-known catalog, security.txt, or OAuth/OIDC discovery is published.
+documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404

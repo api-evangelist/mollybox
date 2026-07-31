@@ -1,0 +1,36 @@
+# MollyBox — Arcflow API
+
+> The domain mollybox.cn currently serves "Arcflow API" (v0.1.0), a single-user,
+> self-hosted resource-capture service built on FastAPI. It captures URL
+> resources (from GitHub, X, WeChat, or the web), enriches their metadata, and
+> tracks each through a learning workflow (inbox -> next -> doing -> done ->
+> archived). MollyBox was added to the API Evangelist network as a consumer-sector
+> portfolio lead of DCM Ventures; this profile reflects the live API found at the
+> domain. All operations except the health check require an HTTP Bearer token.
+
+## API
+- [Arcflow API base](http://www.mollybox.cn/): FastAPI service root
+- [Swagger UI](http://www.mollybox.cn/docs): interactive docs
+- [ReDoc](http://www.mollybox.cn/redoc): reference docs
+- [Health check](http://www.mollybox.cn/api/health): public liveness endpoint
+
+## Specs
+- [OpenAPI 3.1](http://www.mollybox.cn/openapi.json): live spec (captured to openapi/mollybox-arcflow-openapi.json)
+
+## Operations
+- health_api_health_get — GET /api/health — public liveness response
+- get_identity_api_me_get — GET /api/me — authenticated server identity
+- capture_resource_api_resources_post — POST /api/resources — capture a new URL resource
+- list_resources_api_resources_get — GET /api/resources — list/filter resources (q, status, source_type)
+- get_resource_api_resources__resource_id__get — GET /api/resources/{resource_id}
+- update_resource_status_api_resources__resource_id__status_patch — PATCH /api/resources/{resource_id}/status
+- open_resource_api_resources__resource_id__open_post — POST /api/resources/{resource_id}/open
+- import_resources_api_admin_import_resources_post — POST /api/admin/import/resources (admin)
+
+## Enrichment artifacts
+- authentication/mollybox-authentication.yml — HTTP Bearer auth profile
+- conventions/mollybox-conventions.yml — cross-cutting request/response semantics
+- errors/mollybox-problem-types.yml — error envelope (FastAPI 422/404/401)
+- data-model/mollybox-data-model.yml — Resource entity + enums
+- mcp/mollybox-mcp.yml — candidate MCP tool list
+- skills/ — packaged agent skills for the capture + triage flows

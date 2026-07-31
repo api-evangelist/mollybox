@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/mollybox-arcflow-openapi.json
+standards:
+  - id: openapi-3.1
+    conforms: true
+    evidence: served at /openapi.json, openapi field = 3.1.0
+  - id: http-bearer-auth
+    conforms: true
+    evidence: components.securitySchemes.HTTPBearer type=http scheme=bearer
+  - id: oauth2
+    conforms: false
+  - id: openid-connect
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: errors use FastAPI default {"detail":...}, not application/problem+json
+  - id: json-api
+    conforms: false
+  - id: pagination
+    conforms: false
+    evidence: list endpoint returns unbounded array, no page/cursor params
+  - id: idempotency
+    conforms: false
+    evidence: no Idempotency-Key header/param declared
+  - id: fhir
+    conforms: false
+  - id: fapi
+    conforms: false
+  - id: scim
+    conforms: false
+  - id: odata
+    conforms: false

@@ -1,0 +1,43 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/mollybox-arcflow-openapi.json
+format: fastapi-validation
+# NOTE: This API uses the FastAPI/Starlette default error envelope, NOT RFC 9457
+# problem+json. Validation failures return HTTP 422 with an
+# {"detail": [ValidationError...]} body; unmatched routes/auth failures return
+# {"detail": "<message>"} (observed: 404 {"detail":"Not Found"}).
+envelope:
+  media_type: application/json
+  validation_shape: '{ "detail": [ { "loc": [...], "msg": "...", "type": "..." } ] }'
+  message_shape: '{ "detail": "<string>" }'
+problems:
+  - status: 422
+    title: Validation Error
+    schema: HTTPValidationError
+    description: >-
+      Request failed input validation (missing/invalid body or query params).
+      detail[] carries per-field ValidationError entries (loc, msg, type).
+    source_operations:
+      - capture_resource_api_resources_post
+      - list_resources_api_resources_get
+      - import_resources_api_admin_import_resources_post
+      - get_resource_api_resources__resource_id__get
+      - update_resource_status_api_resources__resource_id__status_patch
+      - open_resource_api_resources__resource_id__open_post
+  - status: 404
+    title: Not Found
+    schema: null
+    description: >-
+      Route or resource not found. Observed live at the site root
+      (GET / -> {"detail":"Not Found"}). Not declared in the OpenAPI but
+      returned by the FastAPI default handler; also the expected response
+      for GET /api/resources/{resource_id} with an unknown id.
+    source: 'live probe: http://www.mollybox.cn/'
+  - status: 401
+    title: Unauthorized
+    schema: null
+    description: >-
+      Missing or invalid HTTP Bearer credentials on any secured operation.
+      Not declared in the OpenAPI responses but implied by the HTTPBearer
+      security requirement on all non-health operations.
+    derived_from: securitySchemes.HTTPBearer

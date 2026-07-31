@@ -1,0 +1,52 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/mollybox-arcflow-openapi.json
+authentication:
+  style: http-bearer
+  header: Authorization
+  scheme: Bearer
+  detail: authentication/mollybox-authentication.yml
+idempotency:
+  supported: false
+  detail: >-
+    No Idempotency-Key header or parameter is declared in the spec. Capture
+    (POST /api/resources) is described as de-duplicating by canonical URL
+    (Resource.capture_count increments on repeat capture), which provides a
+    natural upsert-by-url behavior but is not a documented idempotency-key
+    contract.
+pagination:
+  supported: false
+  detail: >-
+    GET /api/resources returns an unbounded array with no page/cursor/limit
+    parameters. Filtering only, via query params.
+filtering:
+  supported: true
+  operation: list_resources_api_resources_get
+  params:
+    - name: q
+      in: query
+      description: Free-text keyword filter.
+    - name: status
+      in: query
+      description: Repeatable ResourceStatus filter (inbox|next|doing|done|archived).
+    - name: source_type
+      in: query
+      description: SourceType filter (github|x|wechat|web).
+field_expansion:
+  supported: false
+metadata:
+  supported: false
+request_tracing:
+  supported: false
+  detail: No request-id / correlation header documented in the spec.
+versioning:
+  scheme: none-declared
+  api_version: '0.1.0'
+  detail: >-
+    info.version is 0.1.0. No URI/header/date versioning scheme; paths are
+    under a flat /api prefix.
+error_envelope:
+  detail: errors/mollybox-problem-types.yml
+  shape: 'FastAPI default ({"detail": ...}); NOT RFC 9457 problem+json.'
+rate_limiting:
+  documented: false

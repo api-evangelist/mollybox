@@ -1,0 +1,20 @@
+{
+  "provider": "mollybox",
+  "sources": [
+    "mollybox-admin-api-openapi.yml",
+    "mollybox-health-api-openapi.yml",
+    "mollybox-me-api-openapi.yml",
+    "mollybox-resources-api-openapi.yml"
+  ],
+  "outputs": [
+    "mollybox-admin-api-openapi.yml",
+    "mollybox-health-api-openapi.yml",
+    "mollybox-me-api-openapi.yml",
+    "mollybox-resources-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/mollybox-arcflow-openapi.json
+summary:
+  types: [http]
+  http_schemes: [bearer]
+  api_key_in: []
+  oauth2_flows: []
+  notes: >-
+    All operations except GET /api/health require an HTTP Bearer token.
+    The server self-describes as a single-user, self-hosted deployment
+    (HealthResponse.mode and ServerIdentity.mode default to "single-user"),
+    so the bearer token is a server-level access token rather than a
+    per-user OAuth credential.
+schemes:
+  - name: HTTPBearer
+    type: http
+    scheme: bearer
+    applied_to:
+      - get_identity_api_me_get
+      - capture_resource_api_resources_post
+      - list_resources_api_resources_get
+      - import_resources_api_admin_import_resources_post
+      - get_resource_api_resources__resource_id__get
+      - update_resource_status_api_resources__resource_id__status_patch
+      - open_resource_api_resources__resource_id__open_post
+    sources: [openapi/mollybox-arcflow-openapi.json]
+unauthenticated_operations:
+  - health_api_health_get

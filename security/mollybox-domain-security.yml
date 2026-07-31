@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: probed
+source: 'dig + curl against www.mollybox.cn / mollybox.cn (2026-07-20)'
+hosts:
+  - host: www.mollybox.cn
+    https: false
+    https_note: 'TLS/443 refuses connection (curl exit 7); service is HTTP-only'
+    http: true
+    http_server: uvicorn
+    hsts: false
+domains:
+  - domain: mollybox.cn
+    resolves_to: 101.132.184.190
+    dnssec: false
+    caa: []
+    spf: false
+    dmarc: false
+findings:
+  - No HTTPS/TLS on the web/API host (port 443 refused); API is served over plaintext HTTP.
+  - No HSTS header.
+  - No DNSSEC on the mollybox.cn zone.
+  - No CAA records.
+  - No SPF record.
+  - No DMARC record.

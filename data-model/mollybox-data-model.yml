@@ -1,0 +1,41 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/mollybox-arcflow-openapi.json
+entities:
+  - name: Resource
+    description: Core domain object representing a captured URL resource.
+    id_field: id
+    required: [url, canonical_url]
+    fields:
+      - {name: id, type: string}
+      - {name: url, type: string}
+      - {name: canonical_url, type: string}
+      - {name: source_type, type: enum, ref: SourceType, default: web}
+      - {name: status, type: enum, ref: ResourceStatus, default: inbox}
+      - {name: title, type: string, nullable: true}
+      - {name: domain, type: string, nullable: true}
+      - {name: capture_count, type: integer, default: 1}
+      - {name: metadata_status, type: enum, ref: MetadataStatus, default: pending}
+      - {name: created_at, type: date-time}
+      - {name: updated_at, type: date-time}
+      - {name: last_opened_at, type: date-time, nullable: true}
+    operations:
+      create: capture_resource_api_resources_post
+      list: list_resources_api_resources_get
+      get: get_resource_api_resources__resource_id__get
+      update_status: update_resource_status_api_resources__resource_id__status_patch
+      open: open_resource_api_resources__resource_id__open_post
+      bulk_import: import_resources_api_admin_import_resources_post
+  - name: ServerIdentity
+    description: Authenticated identity payload for a single-user server.
+    fields:
+      - {name: mode, type: string, default: single-user}
+enums:
+  ResourceStatus: [inbox, next, doing, done, archived]
+  MetadataStatus: [pending, fetched, failed]
+  SourceType: [github, x, wechat, web]
+relationships: []
+notes: >-
+  A single-entity domain (Resource) with three controlled vocabularies. No
+  $ref relationships between top-level entities beyond enum references; the
+  Import request wraps an array of Resource snapshots.

@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/mollybox-arcflow-openapi.json
+skills:
+  - file: mollybox-capture-resource.md
+    name: Capture a URL resource
+    api: openapi/mollybox-arcflow-openapi.json
+    operations: [capture_resource_api_resources_post, list_resources_api_resources_get, get_resource_api_resources__resource_id__get]
+  - file: mollybox-triage-resources.md
+    name: Triage and open resources
+    api: openapi/mollybox-arcflow-openapi.json
+    operations: [list_resources_api_resources_get, update_resource_status_api_resources__resource_id__status_patch, open_resource_api_resources__resource_id__open_post]

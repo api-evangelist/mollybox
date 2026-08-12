@@ -104,6 +104,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/mollybox-arcflow-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/mollybox-agentic-access.yml
 - type: Website

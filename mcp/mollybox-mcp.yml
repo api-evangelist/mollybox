@@ -2,36 +2,41 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: openapi/mollybox-arcflow-openapi.json
-note: >-
-  No official hosted/remote MCP server was found for this provider. The tool
-  list below is a candidate derived one-to-one from the OpenAPI operations so
-  the API could be exposed to agents via an OpenAPI->MCP bridge.
+note: No official hosted/remote MCP server was found for this provider. The tool list below is a candidate
+  derived one-to-one from the OpenAPI operations so the API could be exposed to agents via an OpenAPI->MCP
+  bridge.
 server:
   name: mollybox-arcflow
   transport: http
   auth: http-bearer
 tools:
-  - name: health
-    description: Return a public liveness response.
-    source_operation: openapi/mollybox-arcflow-openapi.json#health_api_health_get
-  - name: get_identity
-    description: Return the authenticated server identity.
-    source_operation: openapi/mollybox-arcflow-openapi.json#get_identity_api_me_get
-  - name: capture_resource
-    description: Capture a new URL resource.
-    source_operation: openapi/mollybox-arcflow-openapi.json#capture_resource_api_resources_post
-  - name: list_resources
-    description: List resources with optional keyword, status, and source filters.
-    source_operation: openapi/mollybox-arcflow-openapi.json#list_resources_api_resources_get
-  - name: get_resource
-    description: Get a single resource by ID.
-    source_operation: openapi/mollybox-arcflow-openapi.json#get_resource_api_resources__resource_id__get
-  - name: update_resource_status
-    description: Update a resource's status.
-    source_operation: openapi/mollybox-arcflow-openapi.json#update_resource_status_api_resources__resource_id__status_patch
-  - name: open_resource
-    description: Open a resource's URL and record the open time.
-    source_operation: openapi/mollybox-arcflow-openapi.json#open_resource_api_resources__resource_id__open_post
-  - name: import_resources
-    description: Import resource snapshots into the server (admin).
-    source_operation: openapi/mollybox-arcflow-openapi.json#import_resources_api_admin_import_resources_post
+- name: health
+  description: Return a public liveness response.
+  source_operation: openapi/mollybox-arcflow-openapi.json#health_api_health_get
+- name: get_identity
+  description: Return the authenticated server identity.
+  source_operation: openapi/mollybox-arcflow-openapi.json#get_identity_api_me_get
+- name: capture_resource
+  description: Capture a new URL resource.
+  source_operation: openapi/mollybox-arcflow-openapi.json#capture_resource_api_resources_post
+- name: list_resources
+  description: List resources with optional keyword, status, and source filters.
+  source_operation: openapi/mollybox-arcflow-openapi.json#list_resources_api_resources_get
+- name: get_resource
+  description: Get a single resource by ID.
+  source_operation: openapi/mollybox-arcflow-openapi.json#get_resource_api_resources__resource_id__get
+- name: update_resource_status
+  description: Update a resource's status.
+  source_operation: openapi/mollybox-arcflow-openapi.json#update_resource_status_api_resources__resource_id__status_patch
+- name: open_resource
+  description: Open a resource's URL and record the open time.
+  source_operation: openapi/mollybox-arcflow-openapi.json#open_resource_api_resources__resource_id__open_post
+- name: import_resources
+  description: Import resource snapshots into the server (admin).
+  source_operation: openapi/mollybox-arcflow-openapi.json#import_resources_api_admin_import_resources_post
+deployment:
+  mode: none
+  verified: derived
+  tools: 8
+  checked: '2026-08-12'
+  source: catalog MCP census

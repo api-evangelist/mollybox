@@ -1,11 +1,12 @@
 generated: '2026-07-20'
 method: probed
 host: http://www.mollybox.cn
-note: >-
-  HTTPS/443 refuses connection; probed over HTTP. All standard discovery
-  documents return the FastAPI default 404 ({"detail":"Not Found"}). No
-  well-known catalog, security.txt, or OAuth/OIDC discovery is published.
-documents:
+note: HTTPS/443 refuses connection; probed over HTTP. All standard discovery documents return the FastAPI
+  default 404 ({"detail":"Not Found"}). No well-known catalog, security.txt, or OAuth/OIDC discovery is
+  published.
+hosts:
+- host: http://www.mollybox.cn
+  documents:
   - path: /.well-known/security.txt
     status: 404
   - path: /.well-known/openid-configuration
@@ -16,3 +17,8 @@ documents:
     status: 404
   - path: /.well-known/ai-plugin.json
     status: 404
+x-shape-fix:
+  converted: '2026-08-20'
+  from: documents
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent.

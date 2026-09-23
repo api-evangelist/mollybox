@@ -1,10 +1,7 @@
 {
   "provider": "mollybox",
   "sources": [
-    "mollybox-admin-api-openapi.yml",
-    "mollybox-health-api-openapi.yml",
-    "mollybox-me-api-openapi.yml",
-    "mollybox-resources-api-openapi.yml"
+    "_original/mollybox-arcflow-openapi.json"
   ],
   "outputs": [
     "mollybox-admin-api-openapi.yml",
@@ -15,6 +12,27 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "mollybox-arcflow-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "mollybox-arcflow-openapi.json: tagged paths GET /api/health -> Health",
+    "mollybox-arcflow-openapi.json: tagged paths GET /api/me -> Me",
+    "mollybox-arcflow-openapi.json: tagged paths POST /api/resources -> Resources",
+    "mollybox-arcflow-openapi.json: tagged paths GET /api/resources -> Resources",
+    "mollybox-arcflow-openapi.json: tagged paths POST /api/admin/import/resources -> Admin",
+    "mollybox-arcflow-openapi.json: tagged paths GET /api/resources/{resource_id} -> Resources",
+    "mollybox-arcflow-openapi.json: tagged paths PATCH /api/resources/{resource_id}/status -> Resources",
+    "mollybox-arcflow-openapi.json: tagged paths POST /api/resources/{resource_id}/open -> Resources",
+    "mollybox-arcflow-openapi.json: declared missing tag: Admin",
+    "mollybox-arcflow-openapi.json: declared missing tag: Health",
+    "mollybox-arcflow-openapi.json: declared missing tag: Me",
+    "mollybox-arcflow-openapi.json: declared missing tag: Resources",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "mollybox-admin-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mollybox-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mollybox-me-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mollybox-resources-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

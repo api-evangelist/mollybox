@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Arcflow Admin API
   version: 0.1.0
@@ -35,6 +35,53 @@ paths:
       - Admin
 components:
   schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    MetadataStatus:
+      type: string
+      enum:
+      - pending
+      - fetched
+      - failed
+      title: MetadataStatus
+      description: Metadata enrichment lifecycle for a resource.
+    ImportResourcesResult:
+      properties:
+        created_count:
+          type: integer
+          title: Created Count
+          default: 0
+        merged_count:
+          type: integer
+          title: Merged Count
+          default: 0
+      type: object
+      title: ImportResourcesResult
+      description: Outcome summary for a resource import operation.
     Resource:
       properties:
         id:
@@ -89,41 +136,6 @@ components:
       - canonical_url
       title: Resource
       description: Core domain object representing a captured URL resource.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ImportResourcesRequest:
       properties:
         resources:
@@ -134,27 +146,15 @@ components:
       type: object
       title: ImportResourcesRequest
       description: API request body for importing resource snapshots.
-    ImportResourcesResult:
+    HTTPValidationError:
       properties:
-        created_count:
-          type: integer
-          title: Created Count
-          default: 0
-        merged_count:
-          type: integer
-          title: Merged Count
-          default: 0
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
-      title: ImportResourcesResult
-      description: Outcome summary for a resource import operation.
-    MetadataStatus:
-      type: string
-      enum:
-      - pending
-      - fetched
-      - failed
-      title: MetadataStatus
-      description: Metadata enrichment lifecycle for a resource.
+      title: HTTPValidationError
     SourceType:
       type: string
       enum:

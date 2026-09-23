@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Arcflow Admin Resources API
+  title: Arcflow Resources API
   version: 0.1.0
 tags:
 - name: Resources
@@ -179,6 +179,50 @@ paths:
       - Resources
 components:
   schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    MetadataStatus:
+      type: string
+      enum:
+      - pending
+      - fetched
+      - failed
+      title: MetadataStatus
+      description: Metadata enrichment lifecycle for a resource.
+    CaptureRequest:
+      properties:
+        url:
+          type: string
+          title: Url
+      type: object
+      required:
+      - url
+      title: CaptureRequest
+      description: API request body for capturing a new resource.
     Resource:
       properties:
         id:
@@ -233,32 +277,6 @@ components:
       - canonical_url
       title: Resource
       description: Core domain object representing a captured URL resource.
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     HTTPValidationError:
       properties:
         detail:
@@ -268,33 +286,6 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    CaptureRequest:
-      properties:
-        url:
-          type: string
-          title: Url
-      type: object
-      required:
-      - url
-      title: CaptureRequest
-      description: API request body for capturing a new resource.
-    StatusUpdateRequest:
-      properties:
-        status:
-          $ref: '#/components/schemas/ResourceStatus'
-      type: object
-      required:
-      - status
-      title: StatusUpdateRequest
-      description: API request body for updating resource status.
-    MetadataStatus:
-      type: string
-      enum:
-      - pending
-      - fetched
-      - failed
-      title: MetadataStatus
-      description: Metadata enrichment lifecycle for a resource.
     SourceType:
       type: string
       enum:
@@ -304,6 +295,15 @@ components:
       - web
       title: SourceType
       description: Origin platform of a resource URL.
+    StatusUpdateRequest:
+      properties:
+        status:
+          $ref: '#/components/schemas/ResourceStatus'
+      type: object
+      required:
+      - status
+      title: StatusUpdateRequest
+      description: API request body for updating resource status.
     ResourceStatus:
       type: string
       enum:

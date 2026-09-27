@@ -35,32 +35,6 @@ paths:
       - Admin
 components:
   schemas:
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     MetadataStatus:
       type: string
       enum:
@@ -69,19 +43,16 @@ components:
       - failed
       title: MetadataStatus
       description: Metadata enrichment lifecycle for a resource.
-    ImportResourcesResult:
+    ImportResourcesRequest:
       properties:
-        created_count:
-          type: integer
-          title: Created Count
-          default: 0
-        merged_count:
-          type: integer
-          title: Merged Count
-          default: 0
+        resources:
+          items:
+            $ref: '#/components/schemas/Resource'
+          type: array
+          title: Resources
       type: object
-      title: ImportResourcesResult
-      description: Outcome summary for a resource import operation.
+      title: ImportResourcesRequest
+      description: API request body for importing resource snapshots.
     Resource:
       properties:
         id:
@@ -136,16 +107,6 @@ components:
       - canonical_url
       title: Resource
       description: Core domain object representing a captured URL resource.
-    ImportResourcesRequest:
-      properties:
-        resources:
-          items:
-            $ref: '#/components/schemas/Resource'
-          type: array
-          title: Resources
-      type: object
-      title: ImportResourcesRequest
-      description: API request body for importing resource snapshots.
     HTTPValidationError:
       properties:
         detail:
@@ -155,15 +116,19 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    SourceType:
-      type: string
-      enum:
-      - github
-      - x
-      - wechat
-      - web
-      title: SourceType
-      description: Origin platform of a resource URL.
+    ImportResourcesResult:
+      properties:
+        created_count:
+          type: integer
+          title: Created Count
+          default: 0
+        merged_count:
+          type: integer
+          title: Merged Count
+          default: 0
+      type: object
+      title: ImportResourcesResult
+      description: Outcome summary for a resource import operation.
     ResourceStatus:
       type: string
       enum:
@@ -174,6 +139,41 @@ components:
       - archived
       title: ResourceStatus
       description: Learning status of a resource.
+    SourceType:
+      type: string
+      enum:
+      - github
+      - x
+      - wechat
+      - web
+      title: SourceType
+      description: Origin platform of a resource URL.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     HTTPBearer:
       type: http

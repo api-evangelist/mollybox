@@ -66,7 +66,6 @@ apis:
   name: MollyBox Admin API
   description: The Admin API from MollyBox — 1 operation(s) for admin.
   humanURL: http://www.mollybox.cn/docs
-  baseURL: http://www.mollybox.cn
   tags:
   - Admin
   properties:
@@ -80,7 +79,6 @@ apis:
   name: MollyBox Health API
   description: The Health API from MollyBox — 1 operation(s) for health.
   humanURL: http://www.mollybox.cn/docs
-  baseURL: http://www.mollybox.cn
   tags:
   - Health
   properties:
@@ -94,7 +92,6 @@ apis:
   name: MollyBox Me API
   description: The Me API from MollyBox — 1 operation(s) for me.
   humanURL: http://www.mollybox.cn/docs
-  baseURL: http://www.mollybox.cn
   tags:
   - Me
   properties:
@@ -108,7 +105,6 @@ apis:
   name: MollyBox Resources API
   description: The Resources API from MollyBox — 4 operation(s) for resources.
   humanURL: http://www.mollybox.cn/docs
-  baseURL: http://www.mollybox.cn
   tags:
   - Resources
   properties:

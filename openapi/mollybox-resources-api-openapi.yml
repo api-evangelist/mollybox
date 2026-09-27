@@ -179,32 +179,6 @@ paths:
       - Resources
 components:
   schemas:
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     MetadataStatus:
       type: string
       enum:
@@ -213,16 +187,6 @@ components:
       - failed
       title: MetadataStatus
       description: Metadata enrichment lifecycle for a resource.
-    CaptureRequest:
-      properties:
-        url:
-          type: string
-          title: Url
-      type: object
-      required:
-      - url
-      title: CaptureRequest
-      description: API request body for capturing a new resource.
     Resource:
       properties:
         id:
@@ -277,6 +241,16 @@ components:
       - canonical_url
       title: Resource
       description: Core domain object representing a captured URL resource.
+    CaptureRequest:
+      properties:
+        url:
+          type: string
+          title: Url
+      type: object
+      required:
+      - url
+      title: CaptureRequest
+      description: API request body for capturing a new resource.
     HTTPValidationError:
       properties:
         detail:
@@ -286,6 +260,42 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    ResourceStatus:
+      type: string
+      enum:
+      - inbox
+      - next
+      - doing
+      - done
+      - archived
+      title: ResourceStatus
+      description: Learning status of a resource.
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     SourceType:
       type: string
       enum:
@@ -304,16 +314,6 @@ components:
       - status
       title: StatusUpdateRequest
       description: API request body for updating resource status.
-    ResourceStatus:
-      type: string
-      enum:
-      - inbox
-      - next
-      - doing
-      - done
-      - archived
-      title: ResourceStatus
-      description: Learning status of a resource.
   securitySchemes:
     HTTPBearer:
       type: http

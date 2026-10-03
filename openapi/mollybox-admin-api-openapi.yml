@@ -35,24 +35,6 @@ paths:
       - Admin
 components:
   schemas:
-    MetadataStatus:
-      type: string
-      enum:
-      - pending
-      - fetched
-      - failed
-      title: MetadataStatus
-      description: Metadata enrichment lifecycle for a resource.
-    ImportResourcesRequest:
-      properties:
-        resources:
-          items:
-            $ref: '#/components/schemas/Resource'
-          type: array
-          title: Resources
-      type: object
-      title: ImportResourcesRequest
-      description: API request body for importing resource snapshots.
     Resource:
       properties:
         id:
@@ -107,38 +89,6 @@ components:
       - canonical_url
       title: Resource
       description: Core domain object representing a captured URL resource.
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ImportResourcesResult:
-      properties:
-        created_count:
-          type: integer
-          title: Created Count
-          default: 0
-        merged_count:
-          type: integer
-          title: Merged Count
-          default: 0
-      type: object
-      title: ImportResourcesResult
-      description: Outcome summary for a resource import operation.
-    ResourceStatus:
-      type: string
-      enum:
-      - inbox
-      - next
-      - doing
-      - done
-      - archived
-      title: ResourceStatus
-      description: Learning status of a resource.
     SourceType:
       type: string
       enum:
@@ -148,6 +98,33 @@ components:
       - web
       title: SourceType
       description: Origin platform of a resource URL.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ImportResourcesRequest:
+      properties:
+        resources:
+          items:
+            $ref: '#/components/schemas/Resource'
+          type: array
+          title: Resources
+      type: object
+      title: ImportResourcesRequest
+      description: API request body for importing resource snapshots.
+    MetadataStatus:
+      type: string
+      enum:
+      - pending
+      - fetched
+      - failed
+      title: MetadataStatus
+      description: Metadata enrichment lifecycle for a resource.
     ValidationError:
       properties:
         loc:
@@ -174,6 +151,29 @@ components:
       - msg
       - type
       title: ValidationError
+    ImportResourcesResult:
+      properties:
+        created_count:
+          type: integer
+          title: Created Count
+          default: 0
+        merged_count:
+          type: integer
+          title: Merged Count
+          default: 0
+      type: object
+      title: ImportResourcesResult
+      description: Outcome summary for a resource import operation.
+    ResourceStatus:
+      type: string
+      enum:
+      - inbox
+      - next
+      - doing
+      - done
+      - archived
+      title: ResourceStatus
+      description: Learning status of a resource.
   securitySchemes:
     HTTPBearer:
       type: http

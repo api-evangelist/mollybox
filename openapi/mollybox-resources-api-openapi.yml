@@ -179,14 +179,16 @@ paths:
       - Resources
 components:
   schemas:
-    MetadataStatus:
-      type: string
-      enum:
-      - pending
-      - fetched
-      - failed
-      title: MetadataStatus
-      description: Metadata enrichment lifecycle for a resource.
+    CaptureRequest:
+      properties:
+        url:
+          type: string
+          title: Url
+      type: object
+      required:
+      - url
+      title: CaptureRequest
+      description: API request body for capturing a new resource.
     Resource:
       properties:
         id:
@@ -241,16 +243,15 @@ components:
       - canonical_url
       title: Resource
       description: Core domain object representing a captured URL resource.
-    CaptureRequest:
-      properties:
-        url:
-          type: string
-          title: Url
-      type: object
-      required:
-      - url
-      title: CaptureRequest
-      description: API request body for capturing a new resource.
+    SourceType:
+      type: string
+      enum:
+      - github
+      - x
+      - wechat
+      - web
+      title: SourceType
+      description: Origin platform of a resource URL.
     HTTPValidationError:
       properties:
         detail:
@@ -260,16 +261,14 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    ResourceStatus:
+    MetadataStatus:
       type: string
       enum:
-      - inbox
-      - next
-      - doing
-      - done
-      - archived
-      title: ResourceStatus
-      description: Learning status of a resource.
+      - pending
+      - fetched
+      - failed
+      title: MetadataStatus
+      description: Metadata enrichment lifecycle for a resource.
     ValidationError:
       properties:
         loc:
@@ -296,15 +295,16 @@ components:
       - msg
       - type
       title: ValidationError
-    SourceType:
+    ResourceStatus:
       type: string
       enum:
-      - github
-      - x
-      - wechat
-      - web
-      title: SourceType
-      description: Origin platform of a resource URL.
+      - inbox
+      - next
+      - doing
+      - done
+      - archived
+      title: ResourceStatus
+      description: Learning status of a resource.
     StatusUpdateRequest:
       properties:
         status:

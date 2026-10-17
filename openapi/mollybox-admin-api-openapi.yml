@@ -35,34 +35,28 @@ paths:
       - Admin
 components:
   schemas:
-    MetadataStatus:
-      type: string
-      enum:
-      - pending
-      - fetched
-      - failed
-      title: MetadataStatus
-      description: Metadata enrichment lifecycle for a resource.
-    ImportResourcesRequest:
+    ImportResourcesResult:
       properties:
-        resources:
-          items:
-            $ref: '#/components/schemas/Resource'
-          type: array
-          title: Resources
+        created_count:
+          type: integer
+          title: Created Count
+          default: 0
+        merged_count:
+          type: integer
+          title: Merged Count
+          default: 0
       type: object
-      title: ImportResourcesRequest
-      description: API request body for importing resource snapshots.
-    ResourceStatus:
-      type: string
-      enum:
-      - inbox
-      - next
-      - doing
-      - done
-      - archived
-      title: ResourceStatus
-      description: Learning status of a resource.
+      title: ImportResourcesResult
+      description: Outcome summary for a resource import operation.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     Resource:
       properties:
         id:
@@ -117,6 +111,43 @@ components:
       - canonical_url
       title: Resource
       description: Core domain object representing a captured URL resource.
+    ResourceStatus:
+      type: string
+      enum:
+      - inbox
+      - next
+      - doing
+      - done
+      - archived
+      title: ResourceStatus
+      description: Learning status of a resource.
+    SourceType:
+      type: string
+      enum:
+      - github
+      - x
+      - wechat
+      - web
+      title: SourceType
+      description: Origin platform of a resource URL.
+    MetadataStatus:
+      type: string
+      enum:
+      - pending
+      - fetched
+      - failed
+      title: MetadataStatus
+      description: Metadata enrichment lifecycle for a resource.
+    ImportResourcesRequest:
+      properties:
+        resources:
+          items:
+            $ref: '#/components/schemas/Resource'
+          type: array
+          title: Resources
+      type: object
+      title: ImportResourcesRequest
+      description: API request body for importing resource snapshots.
     ValidationError:
       properties:
         loc:
@@ -143,37 +174,6 @@ components:
       - msg
       - type
       title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    SourceType:
-      type: string
-      enum:
-      - github
-      - x
-      - wechat
-      - web
-      title: SourceType
-      description: Origin platform of a resource URL.
-    ImportResourcesResult:
-      properties:
-        created_count:
-          type: integer
-          title: Created Count
-          default: 0
-        merged_count:
-          type: integer
-          title: Merged Count
-          default: 0
-      type: object
-      title: ImportResourcesResult
-      description: Outcome summary for a resource import operation.
   securitySchemes:
     HTTPBearer:
       type: http

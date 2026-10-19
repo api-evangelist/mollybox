@@ -1,0 +1,12 @@
+{
+ "url": "http://www.mollybox.cn/openapi.json",
+ "requested_url": "http://www.mollybox.cn/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 8461,
+ "sha256": "d161a2d5199de2596ee4416c7d890946c69466f1eb3ab105e634f091d46d67c0",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

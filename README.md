@@ -64,6 +64,114 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-MollyBox is a company surfaced as a portfolio company of dcm-ventures and added to the API Evangelist network as a stub for enrichment. Sector: consumer. This profile is a lead awaiting the enrichment pipeline.
+MollyBox was added to the API Evangelist network as a consumer-sector portfolio lead of DCM Ventures. The domain mollybox.cn currently serves a live "Arcflow API" (v0.1.0) — a single-user, self-hosted resource-capture service built on FastAPI/uvicorn. It captures URL resources (auto-classified as github, x, wechat, or web), enriches their metadata, and tracks each item through a learning workflow (inbox, next, doing, done, archived), plus health and identity checks. All operations except the public health endpoint require an HTTP Bearer token. This profile reflects the real API discovered at the domain during enrichment.
 
-Backed by: dcm-ventures — https://www.mollybox.cn/
+**Areas:** Company · Consumer · Bookmarking · Resource Capture · Read It Later · FastAPI · Self-Hosted
+
+## MollyBox on APIs.io
+
+Everything profiled for MollyBox is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/mollybox/](https://apis.io/providers/mollybox/)** — or go straight to one of the APIs or properties below.
+
+### APIs (4)
+
+- [MollyBox Admin API](https://apis.io/apis/mollybox/mollybox-admin-api/) — The Admin API from MollyBox — 1 operation(s) for admin.
+- [MollyBox Health API](https://apis.io/apis/mollybox/mollybox-health-api/) — The Health API from MollyBox — 1 operation(s) for health.
+- [MollyBox Me API](https://apis.io/apis/mollybox/mollybox-me-api/) — The Me API from MollyBox — 1 operation(s) for me.
+- [MollyBox Resources API](https://apis.io/apis/mollybox/mollybox-resources-api/) — The Resources API from MollyBox — 4 operation(s) for resources.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [mollybox-arcflow](https://apis.io/servers/mollybox/mollybox-arcflow/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Mollybox Agentic Access](https://apis.io/agentic-access/mollybox/mollybox-agentic-access/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Arcflow Admin API](https://apis.io/collections/mollybox/open-mollybox-admin-api/)
+- [Arcflow Admin Health API](https://apis.io/collections/mollybox/open-mollybox-health-api/)
+- [Arcflow Admin Me API](https://apis.io/collections/mollybox/open-mollybox-me-api/)
+- [Arcflow Admin Resources API](https://apis.io/collections/mollybox/open-mollybox-resources-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Mollybox Arcflow Overlay](https://apis.io/overlays/mollybox/mollybox-arcflow-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Mollybox Authentication](https://apis.io/security/mollybox/mollybox-authentication/)
+- [Mollybox Domain Security](https://apis.io/security/mollybox/mollybox-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.mollybox.cn/)
+
+## API Evangelist rating
+
+**Kin Score 23.4** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 43.3 |
+| Contract governance | 4.5 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 30.4 |
+| Access clarity | 0.0 |
+
+**Agent readiness 23.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/mollybox/](https://apis.io/providers/mollybox/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for MollyBox: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/mollybox/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
